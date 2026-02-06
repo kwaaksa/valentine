@@ -1,28 +1,3 @@
-(async function checkForUpdates() {
-  const currentVersion = "1.0";
-  const versionUrl =
-    "https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json";
-
-  try {
-    const response = await fetch(versionUrl);
-    if (!response.ok) {
-      console.warn("Could not fetch version information.");
-      return;
-    }
-    const data = await response.json();
-    const latestVersion = data.version;
-    const updateMessage = data.updateMessage;
-
-    if (currentVersion !== latestVersion) {
-      alert(updateMessage);
-    } else {
-      console.log("You are using the latest version.");
-    }
-  } catch (error) {
-    console.error("Error checking for updates:", error);
-  }
-})();
-
 const messages = [
   "Ты уверен?",
   "Правда??",
@@ -39,18 +14,20 @@ const messages = [
 let messageIndex = 0;
 
 function handleNoClick() {
-  const нитButton = document.querySelector(".нит-button");
-  const дяButton = document.querySelector(".дя-button");
+  const noButton = document.getElementById("noBtn");
+  const yesButton = document.getElementById("yesBtn");
 
-  // меняем текст
-  нитButton.textContent = messages[messageIndex];
+  noButton.textContent = messages[messageIndex];
   messageIndex = (messageIndex + 1) % messages.length;
 
-  // увеличиваем кнопку "дя"
-  const currentSize = parseFloat(window.getComputedStyle(дяButton).fontSize);
-  дяButton.style.fontSize = `${currentSize * 1.5}px`;
+  const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+  yesButton.style.fontSize = `${currentSize * 1.5}px`;
 }
 
 function handleYesClick() {
   window.location.href = "yes_page.html";
 }
+
+// Подключаем обработчики клика
+document.getElementById("noBtn").addEventListener("click", handleNoClick);
+document.getElementById("yesBtn").addEventListener("click", handleYesClick);
