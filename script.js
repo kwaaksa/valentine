@@ -69,8 +69,8 @@ const messages = [
 let messageIndex = 0;
 
 function handleNoClick() {
-    const noButton = document.querySelector('.нит-button');
-    const yesButton = document.querySelector('.дя-button');
+    const нитButton = document.querySelector('.нит-button');
+    const дяButton = document.querySelector('.дя-button');
     noButton.textContent = messages[messageIndex];
     messageIndex = (messageIndex + 1) % messages.length;
     const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
@@ -78,5 +78,5 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
-    window.location.href = "yes_page.html";
+    window.location.href = "дя_page.html";
 }
